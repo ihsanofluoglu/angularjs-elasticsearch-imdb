@@ -1,0 +1,226 @@
+<header class="cd-header">
+    <div style="width: 435px; float: right; margin-top: 19px;margin-right: 38px;">
+        <ul uib-pagination total-items="bigTotalItems" ng-model="currentPage" max-size="maxSize"
+            ng-change="pageChanged()" class="pagination-sm" boundary-link-numbers="true"
+            style="margin: 46px 0 0 0;"></ul>
+    </div>
+</header>
+<main class="cd-main-content">
+    <div class="cd-tab-filter-wrapper">
+        <div class="cd-tab-filter filter-is-visible">
+            <ul class="cd-filters">
+                <li><a href="#/chart">Chart</a></li>
+            </ul> <!-- cd-filters -->
+        </div> <!-- cd-tab-filter -->
+    </div> <!-- cd-tab-filter-wrapper -->
+    <section class="cd-gallery filter-is-visible">
+        <ul>
+            <!-- Movie Bar-->
+            <li class="mix color-2 check2 radio2 option2" ng-repeat="imdbMovie in imdbMovies.hits.hits"
+                ng-if="imdbMovie._source.tags != '_csvparsefailure'">
+                <!-- Movie Title Bar-->
+                <div class="li-header">
+                    <div class="li-header-nav">
+                        <span class="label label-primary">Title</span>
+                        <span class="label label-default"> {{imdbMovie._source.Title}}</span>
+                    </div>
+                    <button style="margin-left: 4px; margin-top: 15px;" type="button" class="label label-success" data-toggle="modal" data-target=".bs-example-modal-lg{{imdbMovie._source.ID}}">Read More</button>
+                    <div class="modal fade bs-example-modal-lg{{imdbMovie._source.ID}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title">{{imdbMovie._source.Title}}</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div style="float: left;">
+                                        <img ng-if="imdbMovie._source.Poster == null" src="../assets/img/img-2.jpg" alt="Image 2">
+                                        <img ng-if="imdbMovie._source.Poster != null" src="{{imdbMovie._source.Poster}}"
+                                             alt="{{imdbMovie._source.Title}}">
+                                    </div>
+                                    <div style="float: left; width: 59%;">
+                                        <div class="li-header-nav" ng-if="imdbMovie._source.Genre != null" style="margin-top: 12px;">
+                                            <span class="label label-primary">Genre</span>
+                                            <span class="label label-default">{{imdbMovie._source.Genre}}</span>
+                                        </div>
+                                        <div class="li-header-nav" ng-if="imdbMovie._source.Year != null" style="margin-top: 12px;">
+                                            <span class="label label-primary">Year</span>
+                                            <span class="label label-default">{{imdbMovie._source.Year}}</span>
+                                        </div>
+                                        <div class="li-header-nav" ng-if="imdbMovie._source.Director != null" style="margin-top: 12px;">
+                                            <span class="label label-primary">Director</span>
+                                            <span class="label label-default">{{imdbMovie._source.Director}}</span>
+                                        </div>
+                                        <div class="li-header-nav" ng-if="imdbMovie._source.Writer != null" style="margin-top: 12px;">
+                                            <span class="label label-primary">Writer</span>
+                                            <span class="label label-default">{{imdbMovie._source.Writer}}</span>
+                                        </div>
+                                        <div class="li-header-nav" ng-if="imdbMovie._source.Cast != null" style="margin-top: 12px;">
+                                            <span class="label label-primary">Cast</span>
+                                            <span class="label label-default">{{imdbMovie._source.Cast}}</span>
+                                        </div>
+                                        <div class="li-header-nav" ng-if="imdbMovie._source.Language != null" style="margin-top: 12px;">
+                                            <span class="label label-primary">Language</span>
+                                            <span class="label label-default">{{imdbMovie._source.Language}}</span>
+                                        </div>
+                                        <div class="li-header-nav" ng-if="imdbMovie._source.Country != null" style="margin-top: 12px;">
+                                            <span class="label label-primary">Country</span>
+                                            <span class="label label-default">{{imdbMovie._source.Country}}</span>
+                                        </div>
+                                        <div class="li-header-nav" ng-if="imdbMovie._source.Awards != null" style="margin-top: 12px;">
+                                            <span class="label label-primary">Awards</span>
+                                            <span class="label label-default">{{imdbMovie._source.Awards}}</span>
+                                        </div>
+                                        <div class="li-header-nav" ng-if="imdbMovie._source.imdbRating != null" style="margin-top: 12px;">
+                                            <span class="label label-primary">imdbRating</span>
+                                            <span class="label label-default">{{imdbMovie._source.imdbRating}}</span>
+                                        </div>
+                                        <div class="li-header-nav" ng-if="imdbMovie._source.imdbVotes != null" style="margin-top: 12px;">
+                                            <span class="label label-primary">imdbVotes</span>
+                                            <span class="label label-default">{{imdbMovie._source.imdbVotes}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- # Movie Title Bar -->
+                <img ng-if="imdbMovie._source.Poster == null" src="../assets/img/img-2.jpg" alt="Image 2">
+                <img ng-if="imdbMovie._source.Poster != null" src="{{imdbMovie._source.Poster}}"
+                     alt="{{imdbMovie._source.Title}}">
+                <!-- Movie Director Bar -->
+                <!--<div class="li-header">-->
+                <!--<div class="li-header-nav">-->
+                <!--<span class="label label-primary">Director</span>-->
+                <!--<span class="label label-default">Default</span>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!-- # Movie Director Bar -->
+                <div class="li-header">
+                    <div class="li-header-nav" ng-if="imdbMovie._source.imdbRating == null">
+                        <span class="label label-primary">IMDB Rating</span>
+                        <span class="label label-default">Not Rated</span>
+                    </div>
+                    <div class="li-header-nav" ng-if="imdbMovie._source.imdbRating != null" >
+                        <span class="label label-primary">IMDB Rating</span>
+                        <span class="label label-default">{{imdbMovie._source.imdbRating}}</span>
+                    </div>
+                    <div class="li-header-nav" ng-if="imdbMovie._source.Genre != null" style="margin-top: 12px;">
+                        <span class="label label-primary">Genre</span>
+                        <span class="label label-default">{{imdbMovie._source.Genre}}</span>
+                    </div>
+                    <!-- Large modal -->
+                </div>
+            </li>
+            <!-- # Movie Bar-->
+        </ul>
+        <div class="cd-fail-message" ng-if="imdbMovies.hits.max_score ==null">No results found</div>
+    </section>
+    <div class="cd-filter filter-is-visible">
+        <form>
+            <div class="cd-filter-block" style="margin:0">
+                <h4>Search</h4>
+                <div class="cd-filter-content">
+                    <input type="search" placeholder="Try color-1..." ng-model="search" ng-change="getSearchData(search)">
+                    <button class="btn btn-default" type="submit" ng-click="getSearchDataClick()">Search</button>
+                </div> <!-- cd-filter-content -->
+            </div> <!-- cd-filter-block -->
+            <div class="search_my" ng-if="searchMovies.hits.max_score != 0">
+                <div class="search_nav" ng-repeat="searchMovie in searchMovies.hits.hits">
+                    <div style="margin-bottom: 10px;">
+                        <span class="label label-default">Director</span>
+                        <span class="label label-warning">{{searchMovie._source.Director}}</span>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <span class="label label-default">Year</span>
+                        <span class="label label-warning">{{searchMovie._source.Year}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="cd-filter-block">
+                <h4>Genre</h4>
+                <ul class="cd-filter-content cd-filters list">
+                    <li>
+                        <input class="filter" data-filter=".check1" type="checkbox" id="checkbox1" ng-model="drama"
+                               ng-true-value="'Drama'" ng-click="setGenre(drama)">
+                        <label class="checkbox-label" for="checkbox1">Drama</label>
+                    </li>
+                    <li>
+                        <input class="filter" data-filter=".check2" type="checkbox" id="checkbox2" ng-model="drama"
+                               ng-true-value="'Action'" ng-click="setGenre(drama)">
+                        <label class="checkbox-label" for="checkbox2">Action</label>
+                    </li>
+                    <li>
+                        <input class="filter" data-filter=".check3" type="checkbox" id="checkbox3" ng-model="drama"
+                               ng-true-value="'Animation'" ng-click="setGenre(drama)">
+                        <label class="checkbox-label" for="checkbox3">Animation</label>
+                    </li>
+                    <li>
+                        <input class="filter" data-filter=".check4" type="checkbox" id="checkbox4" ng-model="drama"
+                               ng-true-value="'Adventure'" ng-click="setGenre(drama)">
+                        <label class="checkbox-label" for="checkbox3">Adventure</label>
+                    </li>
+                    <li>
+                        <input class="filter" data-filter=".check5" type="checkbox" id="checkbox5" ng-model="drama"
+                               ng-true-value="'History'" ng-click="setGenre(drama)">
+                        <label class="checkbox-label" for="checkbox3">History</label>
+                    </li>
+                </ul> <!-- cd-filter-content -->
+            </div> <!-- cd-filter-block -->
+            <div class="cd-filter-block">
+                <h4>Year</h4>
+                <div ng-if="slider">  <span>{{slider}}</span></div>
+                <div ng-if="!slider"> <span>1983</span>      </div>
+                <input type="range" min="1970" max="2015" step="1" value="300" data-orientation="vertical"
+                       ng-model="slider" ng-change="getDataSlider(slider, sliders)">
+                <div ng-if="slider">
+                    <div ng-if="sliders">  <span>{{sliders}}</span> </div>
+                    <div ng-if="!sliders"> <span>2004</span>        </div>
+                    <input type="range" min="{{slider}}" max="2016" step="1" value="300" data-orientation="vertical"
+                           ng-model="sliders" ng-change="getDataSlider(slider, sliders)">
+                </div>
+                <div ng-if="!slider">
+                    <div ng-if="sliders">  <span>{{sliders}}</span> </div>
+                    <div ng-if="!sliders"> <span>2004</span>         </div>
+                    <input type="range" min="1984" max="2016" step="1" value="300" data-orientation="vertical"
+                           ng-model="sliders" ng-change="getDataSlider(slider, sliders)">
+                </div>
+            </div>
+            <!--<div class="cd-filter-block">-->
+                <!--<h4>Select</h4>-->
+                <!--<div class="cd-filter-content">-->
+                    <!--<div class="cd-select cd-filters">-->
+                        <!--<select class="filter" name="selectThis" id="selectThis">-->
+                            <!--<option value="">Choose an option</option>-->
+                            <!--<option value=".option1">Option 1</option>-->
+                            <!--<option value=".option2">Option 2</option>-->
+                            <!--<option value=".option3">Option 3</option>-->
+                            <!--<option value=".option4">Option 4</option>-->
+                        <!--</select>-->
+                    <!--</div> &lt;!&ndash; cd-select &ndash;&gt;-->
+                <!--</div> &lt;!&ndash; cd-filter-content &ndash;&gt;-->
+            <!--</div> &lt;!&ndash; cd-filter-block &ndash;&gt;-->
+            <!--<div class="cd-filter-block">-->
+                <!--<h4>Radio buttons</h4>-->
+                <!--<ul class="cd-filter-content cd-filters list">-->
+                    <!--<li>-->
+                        <!--<input class="filter" data-filter="" type="radio" name="radioButton" id="radio1" checked>-->
+                        <!--<label class="radio-label" for="radio1">All</label>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<input class="filter" data-filter=".radio2" type="radio" name="radioButton" id="radio2">-->
+                        <!--<label class="radio-label" for="radio2">Choice 2</label>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<input class="filter" data-filter=".radio3" type="radio" name="radioButton" id="radio3">-->
+                        <!--<label class="radio-label" for="radio3">Choice 3</label>-->
+                    <!--</li>-->
+                <!--</ul> &lt;!&ndash; cd-filter-content &ndash;&gt;-->
+            <!--</div> &lt;!&ndash; cd-filter-block &ndash;&gt;-->
+        </form>
+    </div> <!-- cd-filter -->
+    <a href="" class="cd-filter-trigger">Filters</a>
+</main> <!-- cd-main-content -->
